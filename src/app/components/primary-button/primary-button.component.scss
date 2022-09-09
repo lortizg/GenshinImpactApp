@@ -1,0 +1,56 @@
+/** PRIMARY BUTTON */
+.PrimaryButton {
+    width: 100%;
+    width: fit-content;
+    max-width: 200px;
+    padding: .3rem .6rem;
+
+    display: flex;
+    flex-direction: row;
+    gap: .25rem;
+    justify-content: center;
+    align-items: center;
+
+    cursor: pointer;
+    outline: none;
+    border: none;
+    border-radius: 3px;
+    background-color: var(--primary);
+    color: white;
+
+    font-size: 15px;
+    text-align: center;
+    // text-transform: uppercase;
+    text-decoration: none;
+
+    transition: background-color .25s;
+
+    &:hover{ background-color: var(--primary-hover); }
+    &:active{ background-color: var(--primary-active); }
+    &:disabled{ background-color: var(--primary-disabled); }
+
+    &.success { background-color: var(--success); }
+    &.success:hover{ background-color: var(--success-hover); }
+    &.success:active{ background-color: var(--success-active); }
+    &.success:disabled{ background-color: var(--success-disabled); }
+
+    &.danger { background-color: var(--danger); }
+    &.danger:hover{ background-color: var(--danger-hover); }
+    &.danger:active{ background-color: var(--danger-active); }
+    &.danger:disabled{ background-color: var(--danger-disabled); }
+
+    &.secondary { background-color: var(--secondary); }
+    &.secondary:hover{ background-color: var(--secondary-hover); }
+    &.secondary:active{ background-color: var(--secondary-active); }
+    &.secondary:disabled{ background-color: var(--secondary-disabled); }
+
+    .primary-button-icon {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+
+        mat-icon {
+            transform: scale(1);
+        }
+    }
+}

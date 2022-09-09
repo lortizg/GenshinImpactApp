@@ -1,0 +1,16 @@
+<button
+    [id]="id"
+    [type]="type"
+    [class]="'PrimaryButton ' + className"
+    [disabled]="disabled"
+    [ngStyle]="styles"
+    (click)="onButtonClick($event)"
+>
+    <div class="primary-button-icon" *ngIf="icon !== ''">
+        <mat-icon>{{ icon }}</mat-icon>
+    </div>
+
+    <span class="primary-button-text" *ngIf="text !== ''">
+        {{ text }}
+    </span>
+</button>

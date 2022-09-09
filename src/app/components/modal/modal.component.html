@@ -1,0 +1,27 @@
+<div class="ModalComponent" [ngClass]="{ active: active }">
+    <div class="modal">
+        <h1 class="title">{{ conf.title }}</h1>
+        
+        <p class="text" *ngFor="let text of conf.content">{{ text }}</p>
+
+        <div class="footer">
+            <primary-button
+                *ngIf="conf.onAccept"
+                [id]="'general-modal-success-btn-' + level"
+                [className]="'success'"
+                [text]="'Aceptar'"
+                [styles]="{ width: '100px', padding: '.5rem .25rem' }"
+                [onClick]="onAcceptClick"
+            ></primary-button>
+
+            <primary-button
+                *ngIf="conf.onCancel"
+                [id]="'general-modal-danger-btn-' + level"
+                [className]="'danger'"
+                [text]="'Cancelar'"
+                [styles]="{ width: '100px', padding: '.5rem .25rem' }"
+                [onClick]="onCancelClick"
+            ></primary-button>
+        </div>
+    </div>
+</div>
