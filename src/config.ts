@@ -4,6 +4,9 @@
 export const config = {
 
     // URL a la que apunta el proyecto
-    baseUrl: 'http://localhost:4200/',
+    baseUrl: '',
+
+    // Deshabilita los guards si está a true
+    disableGuards: true,
 
 };

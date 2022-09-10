@@ -5,13 +5,15 @@ import { MaterialModule } from './material.module';
 
 import { ModalComponent } from '../components/modal/modal.component';
 import { PrimaryButtonComponent } from '../components/primary-button/primary-button.component';
+import { PrimaryInputComponent } from '../components/primary-input/primary-input.component';
 
 
 
 const modules = [
     /** Components Modules Here */
     ModalComponent,
-    PrimaryButtonComponent
+    PrimaryButtonComponent,
+    PrimaryInputComponent
 ];
 
 @NgModule({

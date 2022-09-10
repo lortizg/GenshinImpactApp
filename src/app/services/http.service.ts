@@ -1,11 +1,13 @@
 import { Injectable } from '@angular/core';
-import axios from 'axios';
+import axios, { AxiosRequestConfig } from 'axios';
 
 import { config } from 'src/config';
 import HTTP_STATUS_CODE from 'src/app/states/http.code';
+import { IRequestHeader } from '../interfaces/IRequestHeader';
 import { IRequestOptions } from '../interfaces/IRequestOptions';
 
 import { SettingsService } from './settings.service';
+
 
 @Injectable({
     providedIn: 'root'
@@ -19,25 +21,47 @@ export class HttpService {
     /**
      * Manejador de peticiones GET
      */
-    public get(url: string, params?: any): Promise<any> {
+    public get(url: string, params?: any, headers: IRequestHeader = { headers: {} }): Promise<any> {
         const completeUrl: string = this.getCompleteUrl(url, params);
-        return axios.get(completeUrl);
+        const reqConfig: AxiosRequestConfig = { headers: { ...headers.headers }};
+        return axios.get(completeUrl, reqConfig);
     }
 
     /**
      * Manejador de peticiones POST
      */
-    public async post(u: string, b?: any): Promise<any> {
+    public async post(u: string, params?: any, headers: IRequestHeader = { headers: {} }): Promise<any> {
         const url: string = this.getCompleteUrl(u, null, 'POST');
-        return axios.post(url, b);
+        const reqConfig: AxiosRequestConfig = { headers: { ...headers.headers }};
+        return axios.post(url, params, reqConfig);
     }
 
     /**
      * Manejador de peticiones PUT
      */
-    public async put(u: string, b?: any): Promise<any> {
+    public async put(u: string, params?: any, headers: IRequestHeader = { headers: {} }): Promise<any> {
         const url: string = this.getCompleteUrl(u, null, 'PUT');
-        return axios.put(url, b);
+        const reqConfig: AxiosRequestConfig = { headers: { ...headers.headers }};
+        return axios.put(url, params, reqConfig);
+    }
+
+    /**
+     * Devuelve el header para las peticiones con autenticación
+     */
+    public getAuthorizationHeaders(token?: string): IRequestHeader {
+        let requestHeader: IRequestHeader = {
+            headers: {
+                "Content-Type": "application/json", 
+                "Accept": "application/json",
+                // "Authorization": `Bearer ${token}`
+            }
+        };
+
+        if(token) {
+            requestHeader.headers.Authorization = `Bearer ${token}`;
+        }
+
+        return requestHeader;
     }
 
     /**
