@@ -1,4 +1,4 @@
-<div class="ModalComponent" [ngClass]="{ active: active }">
+<div class="ModalComponent" (animationend)="animationDone($event)" [ngStyle]="{ '--level': level, '--next-level': level + 1 }">
     <div class="modal">
         <h1 class="title">{{ conf.title }}</h1>
         
@@ -11,7 +11,7 @@
                 [className]="'success'"
                 [text]="'Aceptar'"
                 [styles]="{ width: '100px', padding: '.5rem .25rem' }"
-                [onClick]="onAcceptClick"
+                (onClick)="onAcceptClick($event)"
             ></primary-button>
 
             <primary-button
@@ -20,7 +20,7 @@
                 [className]="'danger'"
                 [text]="'Cancelar'"
                 [styles]="{ width: '100px', padding: '.5rem .25rem' }"
-                [onClick]="onCancelClick"
+                (onClick)="onCancelClick($event)"
             ></primary-button>
         </div>
     </div>

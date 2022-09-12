@@ -1,0 +1,29 @@
+<div 
+    [class]="'primary-input' + ' ' + containerClassName + ' ' + (error !== '' ? 'error' : '')" 
+    [ngStyle]="containerStyles"
+>
+    <label 
+        [title]="label"
+        *ngIf="label !== ''"
+    >
+        {{ label }}
+    </label>
+
+    <input 
+        [id]="id"
+        [class]="className"
+        [type]="type" 
+        [name]="name"
+        [placeholder]="placeholder"
+        [autocomplete]="autocomplete"
+        [disabled]="disabled"
+        [ngStyle]="styles"
+        [(ngModel)]="value" 
+        (blur)="onInputBlur($event)"
+        (keyup)="onInputKeyUp($event)"
+    />
+
+    <p *ngIf="error !== ''">
+        {{ error }}
+    </p>
+</div>

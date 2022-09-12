@@ -1,4 +1,4 @@
-import { Component, Input, OnChanges, OnInit, SimpleChanges } from '@angular/core';
+import { Component, OnInit, OnChanges, SimpleChanges, Input, Output, EventEmitter } from '@angular/core';
 
 @Component({
     selector: 'primary-button',
@@ -20,8 +20,8 @@ export class PrimaryButtonComponent implements OnInit, OnChanges {
     @Input() className: string = '';
     /** Estilos del botón */
     @Input() styles: any = {};
-    /** Callback fired when onClick fired */
-    @Input() onClick: (event: MouseEvent) => void | null = null;
+    /** 'Emisor de evento' del evento 'click' */
+    @Output() onClick = new EventEmitter<MouseEvent>();
 
     constructor() { }
 
@@ -33,8 +33,6 @@ export class PrimaryButtonComponent implements OnInit, OnChanges {
      * Manejador de eventos 'click' del botón
      */
     public onButtonClick = (event: MouseEvent) => {
-        if(this.onClick) {
-            this.onClick(event);
-        }
+        this.onClick.emit(event);
     }
 }
