@@ -3,8 +3,6 @@
 }
 
 .ModalComponent {
-    --normal-speed: .3s;
-
     z-index: 500;
     z-index: calc(500 + var(--level, 0));
     width: 100%;
