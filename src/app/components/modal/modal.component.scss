@@ -1,11 +1,12 @@
 :host {
-    z-index: 500;
+    // z-index: 500;
 }
 
 .ModalComponent {
     --normal-speed: .3s;
 
     z-index: 500;
+    z-index: calc(500 + var(--level, 0));
     width: 100%;
     height: 100%;
 
@@ -38,6 +39,8 @@
         color: #4d4d4d;
 
         transform: translateY(-15px);
+        transform: translateY(calc(-15px + calc(var(--level, 0) * 15px)));
+        // transform: translate3d(0, calc(-15px + calc(var(--level, 0) * 15px)), calc(1px * var(--next-level)));
         transition: transform var(--normal-speed, .5s) ease-out;
 
         .title {
@@ -70,6 +73,8 @@
     &.active {
         .modal {
             transform: translateY(0);
+            transform: translateY(calc(-15px + calc(var(--next-level, 1) * 15px)));
+            // transform: translate3d(0, calc(-15px + calc(var(--next-level, 1) * 15px)), calc(1px * var(--next-level)));
         }
     }
 }
