@@ -25,10 +25,8 @@ export class ModalComponent implements OnInit, AfterContentInit {
             const acceptBtn: HTMLButtonElement | null = <HTMLButtonElement> document.getElementById(`general-modal-success-btn-${this.level}`);
             const cancelBtn: HTMLButtonElement | null = <HTMLButtonElement> document.getElementById(`general-modal-danger-btn-${this.level}`);
             if(acceptBtn) {
-                console.dir(acceptBtn);
                 acceptBtn.focus();
-            } else if(cancelBtn) {
-                console.dir(cancelBtn);
+            } else if(cancelBtn) { 
                 cancelBtn.focus();
             }
         }, 100);

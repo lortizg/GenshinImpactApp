@@ -11,4 +11,9 @@
 </div>
 
 <!-- Custom Modals -->
-<app-modal *ngFor="let modal of modals; index as i" [conf]="modal" [level]="i"></app-modal>
+<app-modal 
+    *ngFor="let modal of modals; index as i" 
+    [conf]="modal" 
+    [level]="i"
+    [@simpleFadeAnimation]="'in'"
+></app-modal>

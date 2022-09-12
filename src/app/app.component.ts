@@ -1,4 +1,5 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
+import { trigger, state, style, animate, transition } from '@angular/animations';
 import { Subscription } from 'rxjs';
 
 import { IModal } from './interfaces/IModal';
@@ -8,7 +9,17 @@ import { SettingsService } from './services/settings.service';
 @Component({
     selector: 'app-root',
     templateUrl: './app.component.html',
-    styleUrls: ['./app.component.scss']
+    styleUrls: ['./app.component.scss'],
+    animations: [trigger('simpleFadeAnimation', [
+        // the "in" style determines the "resting" state of the element when it is visible.
+        state('in', style({ opacity: 1 })),
+
+        // fade in when created. this could also be written as transition('void => *')
+        transition(':enter', [style({ opacity: 0 }), animate(300)]),
+
+        // fade out when destroyed. this could also be written as transition('void => *')
+        transition(':leave', animate(300, style({ opacity: 0 })))
+    ])]
 })
 export class AppComponent implements OnInit, OnDestroy {
     /** Suscripción al loader del servicio de ajustes para que cualquier componente pueda lanzar el spinner de carga */
@@ -21,7 +32,7 @@ export class AppComponent implements OnInit, OnDestroy {
     /** Lista de modales mostrados actualmente */
     public modals: Array<IModal> = [];
 
-    
+
     constructor(private settings: SettingsService) {}
 
     ngOnInit(): void {

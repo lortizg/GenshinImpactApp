@@ -1,6 +1,9 @@
+:host {
+    z-index: 500;
+}
+
 .ModalComponent {
-    --normal-speed: .5s;
-    --quick-speed: .25s;
+    --normal-speed: .3s;
 
     z-index: 500;
     width: 100%;
@@ -14,10 +17,7 @@
     justify-content: center;
     align-items: center;
 
-    opacity: 0;
     background-color: rgba(0, 0, 0, .3);
-
-    transition: opacity var(--normal-speed, .5s);
 
     .modal {
         width: fit-content;
@@ -32,16 +32,13 @@
         justify-content: center;
         align-items: center;
 
-        opacity: 0;
         border: solid 1px var(--primary);
         border-radius: 4px;
         background-color: white;
         color: #4d4d4d;
 
-        transform: translateY(-30px);
-        transition:
-            transform var(--normal-speed, .5s), 
-            opacity var(--normal-speed, .5s);
+        transform: translateY(-15px);
+        transition: transform var(--normal-speed, .5s) ease-out;
 
         .title {
             width: 100%;
@@ -57,7 +54,6 @@
             width: 100%;
             color: #666666;
             text-align: left;
-            // text-justify: inter-word;
         }
 
         .footer {
@@ -72,12 +68,8 @@
     }
 
     &.active {
-        opacity: 1;
-
         .modal {
             transform: translateY(0);
-            opacity: 1;
-            transition-delay: var(--quick-speed, .25s);
         }
     }
 }
