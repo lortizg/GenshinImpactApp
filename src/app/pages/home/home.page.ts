@@ -15,22 +15,6 @@ export class HomePage implements OnInit, OnDestroy {
 
     ngOnDestroy(): void {}
 
-    // public onModalOpen(): void {
-    //     this.settings.openModal({
-    //         title: 'Prueba',
-    //         content: ['Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut blandit rutrum sapien id tempor. Cras.'],
-    //         onAccept: () => this.settings.closeModal()
-    //     });
-
-    //     setTimeout(() => {
-    //         this.settings.openModal({
-    //             title: 'Prueba 2',
-    //             content: ['Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut blandit rutrum sapien id tempor. Cras.'],
-    //             onAccept: () => this.settings.closeAllModals()
-    //         });
-    //     }, 500);
-    // }
-
     public onModalOpen(): void {
         this.settings.openModal({
             title: 'Prueba',
@@ -38,11 +22,15 @@ export class HomePage implements OnInit, OnDestroy {
             onAccept: () => this.settings.openModal({
                 title: 'Prueba 2',
                 content: ['Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut blandit rutrum sapien id tempor. Cras.'],
-                onAccept: () => this.settings.closeAllModals(),
+                onAccept: () => this.settings.openModal({
+                    title: 'Prueba 3',
+                    content: ['Juan'],
+                    onCancel: () => this.settings.closeModal(),
+                    onAccept: () => this.settings.closeAllModals()
+                }),
                 onCancel: () => this.settings.closeModal()
             }),
             onCancel: () => this.settings.closeModal()
         });
     }
-
 }

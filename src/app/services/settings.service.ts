@@ -1,5 +1,7 @@
-import { Injectable } from '@angular/core';
+import { DOCUMENT } from '@angular/common';
+import { ComponentFactoryResolver, ComponentRef, Inject, Injectable, Injector } from '@angular/core';
 import { BehaviorSubject, Observable } from 'rxjs';
+import { ModalComponent } from '../components/modal/modal.component';
 
 import { IModal } from '../interfaces/IModal';
 
@@ -14,21 +16,17 @@ export class SettingsService {
     /** Observable al que suscribirse para recibir los cambios */
     public loadingObs: Observable<boolean> = this.loadingSub.asObservable();
 
-    /** Array con las configuraciones de los modales actuales usado de referencia para actualizar el observable */
-    private modals: Array<IModal> = [];
-    /** Subject para actualizar el observable */
-    private modalsSub: BehaviorSubject<Array<IModal>> = new BehaviorSubject(this.modals);
-    /** Observable al que suscribirse para recibir los cambios */
-    public modalsObs: Observable<Array<IModal>> = this.modalsSub.asObservable();
+    /** Array de las referencias a las instancias de modales */
+    private modalRefs: Array<ComponentRef<ModalComponent>> = [];
 
-
-    constructor() { }
-
+    constructor(
+        private resolver: ComponentFactoryResolver,
+        private injector: Injector,
+        @Inject(DOCUMENT) private document: Document
+    ) { }
 
     /**
      * Muestra u oculta el spinner de cargando
-     * 
-     * @param loading True si se quiere mostrar el spinner, false si no
      */
     public setLoading(loading: boolean): void {
         this.loading = loading;
@@ -38,24 +36,42 @@ export class SettingsService {
     /** 
      * Abre un modal nuevo, que se superpone al actual, en caso de que hubiera.
      */
-    public openModal(modal: IModal): void {
-        this.modals.push(modal);
-        this.modalsSub.next(this.modals);
+    public openModal(conf: IModal): void {
+        const factory = this.resolver.resolveComponentFactory(ModalComponent);
+        const componentRef: ComponentRef<ModalComponent> = factory.create(this.injector);
+
+        componentRef.instance.conf = conf;
+        componentRef.instance.level = this.modalRefs.length;
+        componentRef.hostView.detectChanges();
+        this.modalRefs.push(componentRef);
+        
+        const { nativeElement } = componentRef.location;
+        this.document.body.appendChild(nativeElement);
+
+        componentRef.instance.afterClose.subscribe(() => {
+            componentRef.destroy();
+            this.document.body.removeChild(nativeElement);
+        });
     }
 
     /**
      * Cierra el último modal abierto, preservando los anteriores, en caso de que hubiera.
      */
     public closeModal(): void {
-        this.modals.pop();
-        this.modalsSub.next(this.modals);
+        const componentRef: ComponentRef<ModalComponent> = this.modalRefs.pop();
+        componentRef.instance.close();
     }
 
     /**
      * Cierra todos los modales abiertos.
      */
     public closeAllModals(): void {
-        this.modals = [];
-        this.modalsSub.next(this.modals);
+        // Cerramos todos los modales
+        for(let i = 0; i < this.modalRefs.length; i++) {
+            this.modalRefs[i].instance.close();
+        }
+
+        // Reiniciamos la variable con los modales
+        this.modalRefs = [];
     }
 }

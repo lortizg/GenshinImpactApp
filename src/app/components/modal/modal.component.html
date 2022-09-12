@@ -1,4 +1,4 @@
-<div class="ModalComponent" [ngClass]="{ active: active }" [ngStyle]="{ '--level': level, '--next-level': level + 1 }">
+<div class="ModalComponent" (animationend)="animationDone($event)" [ngStyle]="{ '--level': level, '--next-level': level + 1 }">
     <div class="modal">
         <h1 class="title">{{ conf.title }}</h1>
         

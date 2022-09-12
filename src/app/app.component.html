@@ -9,11 +9,3 @@
         <div></div>
     </div>
 </div>
-
-<!-- Custom Modals -->
-<app-modal 
-    *ngFor="let modal of modals; index as i" 
-    [conf]="modal" 
-    [level]="i"
-    [@simpleFadeAnimation]="'in'"
-></app-modal>

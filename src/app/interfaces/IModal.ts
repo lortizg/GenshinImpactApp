@@ -3,4 +3,5 @@ export interface IModal {
     content: Array<string>;
     onAccept?: () => void;
     onCancel?: () => void;
+    shouldClose?: boolean;
 }

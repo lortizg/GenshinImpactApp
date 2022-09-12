@@ -20,6 +20,8 @@
 
     background-color: rgba(0, 0, 0, .3);
 
+    animation: primaryModalFadeIn .4s;
+
     .modal {
         width: fit-content;
         min-width: 250px;
@@ -38,10 +40,8 @@
         background-color: white;
         color: #4d4d4d;
 
-        transform: translateY(-15px);
-        transform: translateY(calc(-15px + calc(var(--level, 0) * 15px)));
-        // transform: translate3d(0, calc(-15px + calc(var(--level, 0) * 15px)), calc(1px * var(--next-level)));
-        transition: transform var(--normal-speed, .5s) ease-out;
+        animation: primaryModalTranslateIn .3s;
+        transform: translateY(calc(-45px + calc(var(--next-level, 1) * 15px)));
 
         .title {
             width: 100%;
@@ -69,12 +69,22 @@
             align-items: center;
         }
     }
+}
 
-    &.active {
-        .modal {
-            transform: translateY(0);
-            transform: translateY(calc(-15px + calc(var(--next-level, 1) * 15px)));
-            // transform: translate3d(0, calc(-15px + calc(var(--next-level, 1) * 15px)), calc(1px * var(--next-level)));
-        }
-    }
+@keyframes primaryModalFadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+@keyframes primaryModalFadeOut {
+    to { opacity: 0; }
+}
+
+@keyframes primaryModalTranslateIn {
+    0% { transform: translateY(calc(-45px + calc(var(--level, 0) * 15px))); }
+    100% { transform: translateY(calc(-45px + calc(var(--next-level, 1) * 15px))); }
+}
+
+@keyframes primaryModalTranslateOut {
+    to { transform: translateY(calc(-45px + calc(var(--level, 0) * 15px))); }
 }
