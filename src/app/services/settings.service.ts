@@ -19,7 +19,6 @@ export class SettingsService {
     /** Array de las referencias a las instancias de modales */
     private modalRefs: Array<ComponentRef<ModalComponent>> = [];
 
-
     constructor(
         private resolver: ComponentFactoryResolver,
         private injector: Injector,

@@ -1,14 +1,15 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
+import { HttpService } from 'src/app/services/http.service';
 import { SettingsService } from 'src/app/services/settings.service';
 
 @Component({
-    selector: 'app-home',
+    selector: 'home-page',
     templateUrl: './home.page.html',
     styleUrls: ['./home.page.scss']
 })
 export class HomePage implements OnInit, OnDestroy {
 
-    constructor(private settings: SettingsService) { }
+    constructor(private http: HttpService, private settings: SettingsService) { }
 
     ngOnInit(): void {}
 

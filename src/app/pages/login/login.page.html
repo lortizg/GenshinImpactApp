@@ -1,0 +1,43 @@
+<section class="LoginPage">
+    <div class="background">
+        <div class="cover"></div>
+        <img class="image" src="assets/images/login_background.jpg" alt="Background" />
+    </div>
+
+    <div class="login-form">
+        <div class="header">
+            <img class="logo" src="assets/images/logo.png" alt="Logo" />
+        </div>
+
+        <form class="body" (submit)="onSubmit($event)">
+            <input 
+                type="text" 
+                name="username" 
+                class="main" 
+                placeholder="Nombre de usuario" 
+                autocomplete="off"
+                [(ngModel)]="username"
+            />
+
+            <input 
+                type="password" 
+                name="password" 
+                class="main" 
+                placeholder="Contraseña" 
+                autocomplete="off"
+                [(ngModel)]="password" 
+            />
+
+            <input type="submit" class="main btn" value="Iniciar Sesión" />
+        </form>
+
+        <div class="info">
+            <span>Si todavía no tienes cuenta...</span>
+            <a [routerLink]="['/register']">Pulsa aquí para registrarte</a>
+        </div>
+
+        <div class="footer">
+            Copyright 2022 ESAIL IT SOLUTIONS. <br /> Todos los derechos reservados.
+        </div>
+    </div>
+</section>

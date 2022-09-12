@@ -14,7 +14,6 @@ export class AppComponent implements OnInit, OnDestroy {
     /** True para renderizar spinner de carga */
     public loading: boolean = false;
 
-    
     constructor(private settings: SettingsService) {}
 
     ngOnInit(): void {
