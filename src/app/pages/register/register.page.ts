@@ -21,7 +21,7 @@ export class RegisterPage implements OnInit {
 
     constructor(private router: Router, private auth: AuthService, private settings: SettingsService) {}
 
-    ngOnInit(): void {}
+    public ngOnInit(): void {}
 
     /**
      * Manejador de eventos 'submit' del formulario de Login

@@ -7,27 +7,27 @@ import { Component, OnInit, OnChanges, SimpleChanges, Input, Output, EventEmitte
 })
 export class PrimaryButtonComponent implements OnInit, OnChanges {
     /** Texto del botón */
-    @Input() text: string = '';
+    @Input() public text: string = '';
     /** Id del botón */
-    @Input() id: string = '';
+    @Input() public id: string = '';
     /** Tipo del botón: 'button' o 'submit' */
-    @Input() type: string = '';
+    @Input() public type: string = '';
     /** Indica si el botón está deshabilitado */
-    @Input() disabled: boolean = false;
+    @Input() public disabled: boolean = false;
     /** Nombre del mat-icon a renderizar con el botón */
-    @Input() icon: string = '';
+    @Input() public icon: string = '';
     /** Clase adicional del componente. 'success' o 'danger' son dos valores posibles. */
-    @Input() className: string = '';
+    @Input() public className: string = '';
     /** Estilos del botón */
-    @Input() styles: any = {};
+    @Input() public styles: any = {};
     /** 'Emisor de evento' del evento 'click' */
-    @Output() onClick = new EventEmitter<MouseEvent>();
+    @Output() public onClick = new EventEmitter<MouseEvent>();
 
     constructor() { }
 
-    ngOnInit(): void {}
+    public ngOnInit(): void {}
 
-    ngOnChanges(changes: SimpleChanges): void {}
+    public ngOnChanges(changes: SimpleChanges): void {}
 
     /**
      * Manejador de eventos 'click' del botón

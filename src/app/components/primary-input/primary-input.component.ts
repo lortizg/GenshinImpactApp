@@ -7,43 +7,43 @@ import { Component, OnInit, OnChanges, SimpleChanges, Input, Output, EventEmitte
 })
 export class PrimaryInputComponent implements OnInit, OnChanges {
     /** Label del input (opcional) */
-    @Input() label: string = '';
+    @Input() public label: string = '';
     /** Valor del input */
-    @Input() value: string = '';
+    @Input() public value: string = '';
     /** Mensaje de error a mostrar (cadena vacía si no hay error que mostrar) */
-    @Input() error: string = '';
+    @Input() public error: string = '';
     /** Id del input */
-    @Input() id: string = '';
+    @Input() public id: string = '';
     /** Atributo 'type' del input */
-    @Input() type: string = 'text';
+    @Input() public type: string = 'text';
     /** Atributo 'name' del input */
-    @Input() name: string = '';
+    @Input() public name: string = '';
     /** Atributo 'placeholder' del input */
-    @Input() placeholder: string = '';
+    @Input() public placeholder: string = '';
     /** Atributo 'autocomplete' del input */
-    @Input() autocomplete: string = 'off';
+    @Input() public autocomplete: string = 'off';
     /** Atributo 'disabled' del input */
-    @Input() disabled: boolean = false;
+    @Input() public disabled: boolean = false;
     /** Estilos añadidos directamente al input */
-    @Input() styles: any = {};
+    @Input() public styles: any = {};
     /** Estilos añadidor al container del componente */
-    @Input() containerStyles: any = {};
+    @Input() public containerStyles: any = {};
     /** Clase añadida al input directamente (útil para distinguirlo a la hora de buscar en el DOM, p.e.) */
-    @Input() className: string = '';
+    @Input() public className: string = '';
     /** Clase añadida al container del componente */
-    @Input() containerClassName: string = '';
+    @Input() public containerClassName: string = '';
 
     /** Creamos los 'emisores de eventos' */
-    @Output() onChange = new EventEmitter<Event>();
+    @Output() public onChange = new EventEmitter<Event>();
     @Output() public onBlur = new EventEmitter<Event>();
-    @Output() onKeyUp = new EventEmitter<KeyboardEvent>();
+    @Output() public onKeyUp = new EventEmitter<KeyboardEvent>();
 
 
     constructor() { }
 
     public ngOnInit(): void {}
 
-    ngOnChanges(changes: SimpleChanges): void {}
+    public ngOnChanges(changes: SimpleChanges): void {}
 
     /** Manejador de eventos 'blur' del input */
     public onInputBlur(event: Event): void {

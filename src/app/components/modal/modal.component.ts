@@ -13,19 +13,19 @@ export class ModalComponent implements OnInit, AfterContentInit {
     private readonly ANIMATION_FADE_OUT: string = 'primaryModalFadeOut';
 
     /** Objeto configuración del modal */
-    @Input() conf: IModal | null = null;
+    @Input() public conf: IModal | null = null;
     /** Profundidad (z-index) del modal */
-    @Input() level: number | null = null;
+    @Input() public level: number | null = null;
 
     /** Dispara un evento cuando se ha terminado la animación de salida, en el método 'animationDone' */
-    @Output() afterClose = new EventEmitter();
+    @Output() public afterClose = new EventEmitter();
 
 
     constructor(private host: ElementRef<HTMLElement>) {}
 
-    ngOnInit(): void {}
+    public ngOnInit(): void {}
 
-    ngAfterContentInit(): void {
+    public ngAfterContentInit(): void {
         setTimeout(() => {
             const acceptBtn: HTMLButtonElement | null = <HTMLButtonElement> document.getElementById(`general-modal-success-btn-${this.level}`);
             const cancelBtn: HTMLButtonElement | null = <HTMLButtonElement> document.getElementById(`general-modal-danger-btn-${this.level}`);
@@ -38,11 +38,11 @@ export class ModalComponent implements OnInit, AfterContentInit {
         }, 100);
     }
 
-    get container(): HTMLElement {
+    public get container(): HTMLElement {
         return this.host.nativeElement.querySelector('.ModalComponent') as HTMLElement;
     }
 
-    get modal(): HTMLElement {
+    public get modal(): HTMLElement {
         return this.host.nativeElement.querySelector('.ModalComponent .modal') as HTMLElement;
     }
 

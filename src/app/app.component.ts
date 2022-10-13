@@ -16,12 +16,12 @@ export class AppComponent implements OnInit, OnDestroy {
 
     constructor(private settings: SettingsService) {}
 
-    ngOnInit(): void {
+    public ngOnInit(): void {
         // Nos suscribimos al observable loading del settings service para mostrar el spinner de carga
         this.loadingSubscription = this.settings.loadingObs.subscribe((loading: boolean) => this.loading = loading);
     }
 
-    ngOnDestroy(): void {
+    public ngOnDestroy(): void {
         // Nos dessuscribimos de los diferentes observables
         if(this.loadingSubscription) {
             this.loadingSubscription.unsubscribe();

@@ -11,9 +11,9 @@ export class HomePage implements OnInit, OnDestroy {
 
     constructor(private http: HttpService, private settings: SettingsService) { }
 
-    ngOnInit(): void {}
+    public ngOnInit(): void {}
 
-    ngOnDestroy(): void {}
+    public ngOnDestroy(): void {}
 
     public onModalOpen(): void {
         this.settings.openModal({
