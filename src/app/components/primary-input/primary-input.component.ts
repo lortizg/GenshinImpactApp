@@ -35,13 +35,13 @@ export class PrimaryInputComponent implements OnInit, OnChanges {
 
     /** Creamos los 'emisores de eventos' */
     @Output() onChange = new EventEmitter<Event>();
-    @Output() onBlur = new EventEmitter<Event>();
+    @Output() public onBlur = new EventEmitter<Event>();
     @Output() onKeyUp = new EventEmitter<KeyboardEvent>();
 
 
     constructor() { }
 
-    ngOnInit(): void {}
+    public ngOnInit(): void {}
 
     ngOnChanges(changes: SimpleChanges): void {}
 
