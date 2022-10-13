@@ -1,5 +1,6 @@
 <div class="ModalComponent" (animationend)="animationDone($event)" [ngStyle]="{ '--level': level, '--next-level': level + 1 }">
     <div class="modal">
+        <button (click)="onClose($event)">x</button>
         <h1 class="title">{{ conf.title }}</h1>
         
         <p class="text" *ngFor="let text of conf.content">{{ text }}</p>

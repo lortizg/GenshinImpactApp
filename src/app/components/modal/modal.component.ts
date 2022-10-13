@@ -1,5 +1,6 @@
 import { AfterContentInit, Component, ElementRef, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { IModal } from 'src/app/interfaces/IModal';
+import { SettingsService } from 'src/app/services/settings.service';
 
 @Component({
     selector: 'app-modal',
@@ -21,7 +22,7 @@ export class ModalComponent implements OnInit, AfterContentInit {
     @Output() public afterClose = new EventEmitter();
 
 
-    constructor(private host: ElementRef<HTMLElement>) {}
+    constructor(private host: ElementRef<HTMLElement>, private setting:SettingsService) {}
 
     public ngOnInit(): void {}
 
@@ -86,5 +87,9 @@ export class ModalComponent implements OnInit, AfterContentInit {
         if(this.conf && this.conf.onCancel !== undefined) {
             this.conf.onCancel();
         }
+    }
+
+    public onClose(event:MouseEvent){
+        this.setting.closeAllModals();
     }
 }

@@ -11,7 +11,9 @@ export class HomePage implements OnInit, OnDestroy {
 
     constructor(private http: HttpService, private settings: SettingsService) { }
 
-    public ngOnInit(): void {}
+    public ngOnInit(): void {
+        //this.settings.setLoading(true);
+    }
 
     public ngOnDestroy(): void {}
 

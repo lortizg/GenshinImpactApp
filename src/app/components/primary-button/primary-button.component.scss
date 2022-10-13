@@ -25,7 +25,7 @@
 
     transition: background-color .25s;
 
-    &:hover{ background-color: var(--primary-hover); }
+    &:hover{ background-color: var(--primary-hover, red); }
     &:active{ background-color: var(--primary-active); }
     &:disabled{ background-color: var(--primary-disabled); }
 
