@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { CharacterService } from 'src/app/services/character.service';
 import { HttpService } from 'src/app/services/http.service';
 import { DEFAULT_BACKGROUND, DEFAULT_ICON } from 'src/consts';
 
@@ -11,27 +12,21 @@ export class CharacterListPage implements OnInit {
 
   public characters:any;
   public defaultIcon=DEFAULT_ICON;
-  constructor(private http:HttpService) { }
+  constructor(private characterManager:CharacterService) { }
 
   public async ngOnInit(): Promise<void> { 
 
 
-    this.characters=(await this.http.get("https://api.genshin.dev/characters")).data;
+    this.characters=await this.characterManager.getCharacterList();
     for(let i=0;i<this.characters.length;i++){
       this.characters[i]={
       "name":this.characters[i],
-      "displayName":this.characters[i]==="tartaglia"?"Childe":this.characters[i].replace('-',' '),
-      "icon":"https://api.genshin.dev/characters/"+this.characters[i]+"/icon",
-      "card": (await this.http.get("assets/cardsGenshin.json")).data.filter(x=>(x.name.split(':')[0]).toLowerCase().replace(' ','-').includes(this.characters[i]) ||
-                                                                                this.characters[i].includes(x.name.split(':')[0].toLowerCase()) || 
-                                                                                (this.characters[i]==="tartaglia" && x.name.includes("Childe")))
-      [0]?.namecard || DEFAULT_BACKGROUND
+      "displayName":this.characterManager.getDisplayName(this.characters[i]),
+      "icon":this.characterManager.getCharacterIcon(this.characters[i]),
+      "card": await this.characterManager.getCharacterCard(this.characters[i])
+      
     };
     }
-    // this.http.get("assets/cardsGenshin.json").then(x=>{
-    //   console.log(x);
-    // })
-    //console.log(this.characters);
 
   }
 
