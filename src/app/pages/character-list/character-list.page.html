@@ -1,1 +1,10 @@
-<p>character-list works!</p>
+<div id="ListContainer">
+    <li *ngFor="let char of characters" >
+        <a [routerLink]="'/characters/'+char.name">
+            <div id="listSection" [style]="'background-image: linear-gradient(to right, rgba(255, 255, 255, 0.8), rgba(255, 255, 255, 0)),url('+char.card+')'">
+                <img [src]="char.icon" (error)="$event.target['src'] = defaultIcon">
+                <p>{{char.displayName | titlecase}}</p>
+            </div>
+        </a>
+    </li>
+</div>

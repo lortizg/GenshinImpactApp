@@ -11,7 +11,7 @@ const routes: Routes = [
     },
     {
         path: 'characters',
-        loadChildren: () => import('./pages/character-list/character-list-routing.module').then(m => m.CharacterListRoutingModule),
+        loadChildren: () => import('./pages/character-list/character-list.page.module').then(m => m.CharacterListModule),
        // canActivate: [AuthGuard]
     },
     {

@@ -1,0 +1,33 @@
+#ListContainer{
+    list-style-type: none;
+    width: 80%;
+    margin: auto;
+}
+#listSection{
+    height: 35vh;
+    flex-direction: row;
+    align-items: center;
+    display: grid;
+    grid-template-columns: 20% 1fr 50px;
+    padding: 1% 2%;
+    background-size: cover;
+    background-position: right center;
+    margin: 1% auto;
+    //border-radius: 0 120px 120px 0; */
+    /* border-radius: 120px 0 0 120px; */
+    border-radius: 80px 0 0 80px;
+    img{
+        width: 10vw;
+        height: 10vw;
+        border: 2px solid white;
+        border-radius: 50%;
+    }
+    p{
+        text-decoration: none !important;
+        font-size: 2vw;
+        font-weight: bold;
+        color:#514a7c;
+        
+    }
+}
+    

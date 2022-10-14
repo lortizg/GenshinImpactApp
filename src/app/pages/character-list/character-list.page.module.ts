@@ -15,4 +15,4 @@ import { CharacterListPage } from './character-list.page';
     ],
     declarations: [CharacterListPage],
 })
-export class HomeModule {}
+export class CharacterListModule {}
