@@ -36,24 +36,14 @@ export class CharacterService {
   private getDefaultCharacterImages():ICharacterImages{
     return {
       card:"",
-      constellation:"",
-      constellation1:"",
-      constellation2:"",
-      constellation3:"",
-      constellation4:"",
-      constellation5:"",
-      constellation6:"",
+      constellations:[], //c, c1,c2,c3,c4,c5,c6
       gacha_card:"",
       gacha_splash:"",
       icon:"",
       icon_big:"",
+      icon_side:"",
       portrait:"",
-      talent_burst:"",
-      talent_na:"",
-      talent_passive0:"",
-      talent_passive1:"",
-      talent_passive2:"",
-      talent_skill:""
+      talents:[], // na,skill,burst,p0,p1,p2
     }
   }
   public async getCharacterList():Promise<any[]>{
@@ -79,27 +69,73 @@ export class CharacterService {
 
   public async getImagesForCharacter(name:string):Promise<ICharacterImages>{
     let imagesAviables=(await this.http.get(this.url+"/"+name+"/list")).data;
-    imagesAviables=imagesAviables.map(x=>{return this.url+"/"+name+"/"+x});
-    let aux:ICharacterImages={
-      card:imagesAviables[0],
-      constellation:imagesAviables[1],
-      constellation1:imagesAviables[2],
-      constellation2:imagesAviables[3],
-      constellation3:imagesAviables[4],
-      constellation4:imagesAviables[5],
-      constellation5:imagesAviables[6],
-      constellation6:imagesAviables[7],
-      gacha_card:imagesAviables[8],
-      gacha_splash:imagesAviables[9],
-      icon:imagesAviables[10],
-      icon_big:imagesAviables[11],
-      portrait:imagesAviables[12],
-      talent_burst:imagesAviables[13],
-      talent_na:imagesAviables[14],
-      talent_passive0:imagesAviables[15],
-      talent_passive1:imagesAviables[16],
-      talent_passive2:imagesAviables[17],
-      talent_skill:imagesAviables[18]
+    let urlAviables=imagesAviables.map(x=>{return this.url+"/"+name+"/"+x});
+    let aux=this.getDefaultCharacterImages();
+
+    for(let i=0;i<imagesAviables.length;i++){
+      switch(imagesAviables[i]){
+        case "card":
+          aux.card=urlAviables[i];
+        break;
+        case "constellation":
+          aux.constellations[0]=urlAviables[i];
+        break;
+        case "constellation-1":
+          aux.constellations[1]=urlAviables[i];
+        break;
+        case "constellation-2":
+          aux.constellations[2]=urlAviables[i];
+        break;
+        case "constellation-3":
+          aux.constellations[3]=urlAviables[i];
+        break;
+        case "constellation-4":
+          aux.constellations[4]=urlAviables[i];
+        break;
+        case "constellation-5":
+          aux.constellations[5]=urlAviables[i];
+        break;
+        case "constellation-6":
+          aux.constellations[6]=urlAviables[i];
+        break;
+        case "gacha-card":
+          aux.gacha_card=urlAviables[i];
+        break;
+        case "gacha-splash":
+          aux.gacha_splash=urlAviables[i];
+        break;
+        case "icon":
+          aux.icon=urlAviables[i];
+        break;
+        case "icon-big":
+          aux.icon_big=urlAviables[i];
+        break;
+        case "icon-side":
+          aux.icon_side=urlAviables[i];
+        break;
+        case "portrait":
+          aux.portrait=urlAviables[i];
+        break;
+        case "talent-burst":
+          aux.talents[2]=urlAviables[i];
+        break;
+        case "talent-na":
+          aux.talents[0]=urlAviables[i];
+        break;
+        case "talent-passive-0":
+          aux.talents[3]=urlAviables[i];
+        break;
+        case "talent-passive-1":
+          aux.talents[4]=urlAviables[i];
+        break;
+        case "talent-passive-2":
+          aux.talents[5]=urlAviables[i];
+        break;
+        case "talent-skill":
+          aux.talents[1]=urlAviables[i];
+        break;
+
+      }
     }
     return aux;
   }

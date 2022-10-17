@@ -36,27 +36,35 @@
 
 /* You can add global styles to this file, and also import other style files */
 :root {
-    --primary: #669595;
-    --primary-hover: #5d8989;
-    --primary-active: #76a2a2;
-    --primary-disabled: rgba(102, 149, 149, .65);
-    --primary-light: rgba(102, 149, 149, .25);
-    --primary-dark: #344c4c;
+//     --primary: #669595;
+//     --primary-hover: #5d8989;
+//     --primary-active: #76a2a2;
+//     --primary-disabled: rgba(102, 149, 149, .65);
+//     --primary-light: rgba(102, 149, 149, .25);
+//     --primary-dark: #344c4c;
 
-    --secondary: #6c757d;
-    --secondary-hover: #5a6268;
-    --secondary-active: #545b62;
-    --secondary-disabled: rgba(108, 117, 125, .65);
+//     --secondary: #6c757d;
+//     --secondary-hover: #5a6268;
+//     --secondary-active: #545b62;
+//     --secondary-disabled: rgba(108, 117, 125, .65);
 
-    --success: #28a745;
-    --success-hover: #218838;
-    --success-active: #1e7e34;
-    --success-disabled: rgba(40, 167, 69, .65);
+//     --success: #28a745;
+//     --success-hover: #218838;
+//     --success-active: #1e7e34;
+//     --success-disabled: rgba(40, 167, 69, .65);
 
-    --danger: #dc3545;
-    --danger-hover: #c82333;
-    --danger-active: #bd2130;
-    --danger-disabled: rgba(220, 53, 69, .65);
+//     --danger: #dc3545;
+//     --danger-hover: #c82333;
+//     --danger-active: #bd2130;
+//     --danger-disabled: rgba(220, 53, 69, .65);
+
+    --anemo: #3f8a81;
+    --cryo: #b1e0ff;
+    --dendro: #1d8a3e;
+    --electro: #683a74;
+    --geo: #6a4900;
+    --hydro: #126c90;
+    --pyro: #770000;
 }
 
 * {
@@ -75,3 +83,61 @@ body {
     margin: 0; 
     font-family: Roboto, "Helvetica Neue", sans-serif; 
 }
+img{
+    max-width: 100%;
+}
+li,ol,ul{
+    list-style: none;
+}
+
+.ANEMO{
+    border-color: var(--anemo) !important;
+    h1,h2{
+        background-color: var(--anemo)!important;
+        color:white;
+    }
+}
+.CRYO{
+    border-color: var(--cryo) !important;
+    h1,h2{
+        background-color: var(--cryo)!important;
+        color:black;
+    }
+}
+.DENDRO{
+    border-color: var(--dendro) !important;
+    h1,h2{
+        background-color: var(--dendro)!important;
+        color:white;
+    }
+}
+.ELECTRO{
+    border-color: var(--electro) !important;
+    h1,h2{
+        background-color: var(--electro)!important;
+        color:white;
+    }
+}
+.HYDRO{
+    border-color: var(--hydro) !important;
+    h1,h2{
+        background-color: var(--hydro)!important;
+        color:white;
+    }
+}
+.PYRO{
+    border-color: var(--pyro) !important;
+    h1,h2{
+        background-color: var(--pyro)!important;
+        color:white;
+    }
+}
+.GEO{
+    border-color: var(--geo) !important;
+    h1,h2{
+        background-color: var(--geo)!important;
+        color:white;
+    }
+}
+
+

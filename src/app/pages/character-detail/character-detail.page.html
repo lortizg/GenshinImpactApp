@@ -1,5 +1,90 @@
-<div id="bio">
-    <p>{{char.name}}</p>
-    <p>{{char.title}}</p>
-    <img [src]="char.images.card">
+<div id="container">
+    <div id="abilities">
+        <div id="skillTalents" [class]=char.vision_key>
+            <ol *ngFor="let talent of char.skillTalents, index as i">
+                <h2>{{talent.name}}</h2>
+                <h3>{{talent.unlock}}</h3>
+                <div id="listContent">
+                    <div>
+                        <img [src]="char.images.talents[i]">
+                    </div>
+                    <div>
+                        <p>{{talent.description}}</p>
+                        <li *ngFor="let upgrade of talent.upgrades">
+                            <div id="upgrades">
+                                <p>{{upgrade.name}}</p>
+                                <p>{{upgrade.value}}</p>
+                            </div>
+                        </li>
+                    </div>
+                </div>
+            </ol>
+        </div>
+        <div id="passive" [class]=char.vision_key>
+            <ol *ngFor="let passive of char.passiveTalents, index as i">
+                <h2>{{passive.name}}</h2>
+                <h3>{{passive.unlock}}</h3>
+                <div id="listContent">
+                    <div>
+                        <img [src]="char.images.talents[3+i]">
+                    </div>
+                    <div>
+                        <p>{{passive.description}}</p>
+                    </div>
+                </div>
+            </ol>
+        </div>
+        <div id="constellation" [class]=char.vision_key [style]="'background-image: url('+char.images.constellations[0]+');'">
+            <h2>{{char.constellation}}</h2>
+            <div id="constellationContainer">     
+                    <ol *ngFor="let constellation of char.constellations, index as i">
+                        <h3>{{constellation.name}}</h3>
+                        <h4>{{constellation.unlock}}</h4>
+                        <div id="listContent">
+                            <img [src]="char.images.constellations[i+1]">
+                            <div>
+                                <p>{{constellation.description}}</p>
+                            </div>
+                        </div>
+                    </ol>
+            </div>
+           
+        </div>
+    </div>
+    
+    <div id="bio" [class]=char.vision_key>
+        <h1>{{char.name}}</h1>
+        <h2>{{char.title}}</h2>
+        <div id="images">
+            <div id="buttons">
+                <button (click)="showImage('card')">Card</button>
+                <button (click)="showImage('portrait')">Portrait</button>
+                <button (click)="showImage('splash')">Splash-Art</button>
+            </div>
+            <img id="card" [src]="char.images.card">
+            <img id="portrait" [src]="char.images.portrait">
+            <img id="splash" [src]="char.images.gacha_splash">
+        </div>
+        <div id="rarity"></div>
+        <div id="element">
+            <img [src]="getElementImage()">
+            <p>{{char.vision}}</p>
+        </div>
+        <div id="nation">
+            <img [src]="getNationImage()">
+            <p>{{char.nation}}</p>
+        </div>
+        
+        <p>{{char.constellation}}</p>
+        <p>{{char.birthday}}</p>
+        <p>{{char.affiliation}}</p>
+        <p>{{char.description}}</p>
+    </div>
+    
+    <div id="crystalfly1">
+        <img src="assets/images/side_crystalfly_{{char.nation}}.png">
+    </div>
+    <div id="crystalfly2">
+        <img src="assets/images/side_crystalfly_{{char.nation}}.png">
+    </div>
 </div>
