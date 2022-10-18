@@ -1,1 +1,12 @@
-<p>top-bar works!</p>
+<div id=container (click)="hideUl()">
+    <!-- <input type="text" placeholder="Search..."> -->
+    <div id="myDropdown" class="dropdown-content">
+        <input type="text" placeholder="Search.." id="myInput" (keyup)="filterFunction()">
+        <ul id="list">
+            <li  *ngFor="let char of characterList">
+                <a href="/characters/{{char}}">{{char}}</a>
+            </li>
+        </ul>
+      
+    </div>
+</div>

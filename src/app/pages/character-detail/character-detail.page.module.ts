@@ -11,7 +11,7 @@ import { CharacterDetailPage } from './character-detail.page';
         CommonModule,
         CharacterListRoutingModule,
         FormsModule,
-        ComponentsModule,
+        ComponentsModule
     ],
     declarations: [CharacterDetailPage],
 })
