@@ -16,7 +16,6 @@ export class CharacterListPage implements OnInit {
 
   public async ngOnInit(): Promise<void> { 
 
-
     this.characters=await this.characterManager.getCharacterList();
     for(let i=0;i<this.characters.length;i++){
       this.characters[i]={

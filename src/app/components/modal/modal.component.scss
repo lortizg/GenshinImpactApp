@@ -40,7 +40,11 @@
 
         animation: primaryModalTranslateIn .3s;
         transform: translateY(calc(-45px + calc(var(--next-level, 1) * 15px)));
-
+        #close{
+            align-self: flex-end;
+            height: 24px;
+            width: 24px;
+        }
         .title {
             width: 100%;
             margin: 0;
@@ -65,6 +69,13 @@
             flex-direction: row;
             justify-content: space-evenly;
             align-items: center;
+        }
+        .image{
+            img{
+                max-height: 70vh;
+                max-width: 85vw;
+                height: 100%;
+            }
         }
     }
 }

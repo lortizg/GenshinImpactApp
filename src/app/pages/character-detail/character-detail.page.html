@@ -1,10 +1,10 @@
-<div id="container">
+<div id="container" >
     <div id="abilities">
-        <div id="skillTalents" [class]=char.vision_key>
+        <div id="skillTalents" [class]="char.vision_key">
             <ol *ngFor="let talent of char.skillTalents, index as i">
                 <h2>{{talent.name}}</h2>
                 <h3>{{talent.unlock}}</h3>
-                <div id="listContent">
+                <div class="listContent">
                     <div>
                         <img [src]="char.images.talents[i]">
                     </div>
@@ -20,11 +20,11 @@
                 </div>
             </ol>
         </div>
-        <div id="passive" [class]=char.vision_key>
+        <div id="passive" [class]="char.vision_key">
             <ol *ngFor="let passive of char.passiveTalents, index as i">
                 <h2>{{passive.name}}</h2>
                 <h3>{{passive.unlock}}</h3>
-                <div id="listContent">
+                <div class="listContent">
                     <div>
                         <img [src]="char.images.talents[3+i]">
                     </div>
@@ -34,13 +34,13 @@
                 </div>
             </ol>
         </div>
-        <div id="constellation" [class]=char.vision_key [style]="'background-image: url('+char.images.constellations[0]+');'">
+        <div id="constellation" [class]="char.vision_key" [style]="'background-image: '+((char.images && char.images.constellations[0]) ?('url('+ char.images.constellations[0]) +')':'none')+';'">
             <h2>{{char.constellation}}</h2>
             <div id="constellationContainer">     
                     <ol *ngFor="let constellation of char.constellations, index as i">
                         <h3>{{constellation.name}}</h3>
                         <h4>{{constellation.unlock}}</h4>
-                        <div id="listContent">
+                        <div class="listContent">
                             <img [src]="char.images.constellations[i+1]">
                             <div>
                                 <p>{{constellation.description}}</p>
@@ -57,34 +57,63 @@
         <h2>{{char.title}}</h2>
         <div id="images">
             <div id="buttons">
-                <button (click)="showImage('card')">Card</button>
-                <button (click)="showImage('portrait')">Portrait</button>
-                <button (click)="showImage('splash')">Splash-Art</button>
+                <button id="button_card" (click)="showImage('card')">Card</button>
+                <button id="button_portrait" (click)="showImage('portrait')">Portrait</button>
+                <button id="button_splash" (click)="showImage('splash')">Splash-Art</button>
             </div>
-            <img id="card" [src]="char.images.card">
-            <img id="portrait" [src]="char.images.portrait">
-            <img id="splash" [src]="char.images.gacha_splash">
+            <img *ngIf="char.images && char.images.card" id="card" (click)="onModalOpen(char.images.card)" [src]="char.images.card">
+            <img id="portrait" (click)="onModalOpen(char.images.portrait)" [src]="char.images.portrait">
+            <img id="splash" (click)="onModalOpen(char.images.gacha_splash)" [src]="char.images.gacha_splash">
         </div>
-        <div id="rarity"></div>
-        <div id="element">
-            <img [src]="getElementImage()">
-            <p>{{char.vision}}</p>
-        </div>
-        <div id="nation">
-            <img [src]="getNationImage()">
-            <p>{{char.nation}}</p>
+        <div id="basic">
+            <div class="basicColumn">
+                <h3>Rarity</h3>
+                <div id="rarity"></div>
+            </div>
+            <div id="element"  class="basicColumn">
+                <h3>Vision</h3>
+                <span>
+                    <img *ngIf="char.vision" [src]="getElementImage()">
+                    <p>{{char.vision}}</p>
+                </span>
+            </div>
+            <div id="nation"  class="basicColumn">
+                <h3>Nation</h3>
+                <span>
+                    <img *ngIf="char.nation" [src]="getNationImage()">
+                    <p>{{char.nation}}</p>
+                </span>
+            </div>
         </div>
         
-        <p>{{char.constellation}}</p>
-        <p>{{char.birthday}}</p>
-        <p>{{char.affiliation}}</p>
-        <p>{{char.description}}</p>
+        <div id="moreInfo">
+            <p id="desc"><i>{{char.description}}</i></p>
+            <ol>
+                <li>
+                    <h4>Weapon</h4>
+                    <p>{{char.weapon}}</p>
+                </li>
+                <li>
+                    <h4>Birthday</h4>
+                    <p>{{char.birthday}}</p>
+                </li>
+                <li>
+                    <h4>Affiliation</h4>
+                    <p>{{char.affiliation}}</p>
+                </li>
+                <li>
+                    <h4>Constellation</h4>
+                    <p>{{char.constellation}}</p>   
+                </li>
+            </ol>
+        </div>
     </div>
     
-    <div id="crystalfly1">
-        <img src="assets/images/side_crystalfly_{{char.nation}}.png">
-    </div>
+
     <div id="crystalfly2">
-        <img src="assets/images/side_crystalfly_{{char.nation}}.png">
+        <img *ngIf="char.nation" src="assets/images/side_crystalfly_{{char.nation}}.png">
+    </div>
+    <div id="statue">
+        <img *ngIf="char.nation" src="assets/images/statue_{{char.nation}}.webp">
     </div>
 </div>

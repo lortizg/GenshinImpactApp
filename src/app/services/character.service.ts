@@ -33,7 +33,7 @@ export class CharacterService {
       images:this.getDefaultCharacterImages()
     }
   }
-  private getDefaultCharacterImages():ICharacterImages{
+  public getDefaultCharacterImages():ICharacterImages{
     return {
       card:"",
       constellations:[], //c, c1,c2,c3,c4,c5,c6

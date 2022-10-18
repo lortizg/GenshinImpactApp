@@ -92,4 +92,8 @@ export class ModalComponent implements OnInit, AfterContentInit {
     public onClose(event:MouseEvent){
         this.setting.closeAllModals();
     }
+    public preventClick(event:MouseEvent){
+        event.preventDefault();
+        event.stopPropagation();
+    }
 }

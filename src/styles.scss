@@ -59,12 +59,19 @@
 //     --danger-disabled: rgba(220, 53, 69, .65);
 
     --anemo: #3f8a81;
+    --anemo-background:#defffb;
     --cryo: #b1e0ff;
+    --cryo-background: #b9e3ff;
     --dendro: #1d8a3e;
+    --dendro-background:#e8ffb3;
     --electro: #683a74;
+    --electro-background:#eebbff;
     --geo: #6a4900;
+    --geo-background:#ffeec7;
     --hydro: #126c90;
+    --hydro-background:#8aafbe;
     --pyro: #770000;
+    --pyro-background: #ffbdbd;
 }
 
 * {
@@ -138,6 +145,39 @@ li,ol,ul{
         background-color: var(--geo)!important;
         color:white;
     }
+}
+
+body{
+    background:white;
+    transition: background-color .25s;
+}
+.GEO_bg{
+    background: rgb(255,255,255);
+    background: radial-gradient(circle, var(--geo-background) 0%, white 100%);
+}
+.ANEMO_bg{
+    background: rgb(255,255,255);
+    background: radial-gradient(circle, var(--anemo-background) 0%, white 100%);
+}
+.ELECTRO_bg{
+    background: rgb(255,255,255);
+    background: radial-gradient(circle, var(--electro-background) 0%, white 100%);
+}
+.HYDRO_bg{
+    background: rgb(255,255,255);
+    background: radial-gradient(circle, var(--hydro-background) 0%, white 100%);
+}
+.CRYO_bg{
+    background: rgb(255,255,255);
+    background: radial-gradient(circle, var(--cryo-background) 0%, white 100%);
+}
+.DENDRO_bg{
+    background: rgb(255,255,255);
+    background: radial-gradient(circle, var(--dendro-background) 0%, white 100%);
+}
+.PYRO_bg{
+    background: rgb(255,255,255);
+    background: radial-gradient(circle, var(--pyro-background) 0%, white 100%);
 }
 
 

@@ -3,32 +3,41 @@ import { ICharacter } from 'src/app/interfaces/ICharacter';
 import { CharacterService } from 'src/app/services/character.service';
 import { ActivatedRoute } from '@angular/router';
 import { ImageService } from 'src/app/services/image.service';
+import { SettingsService } from 'src/app/services/settings.service';
 
 @Component({
   selector: 'app-character-detail',
   templateUrl: './character-detail.page.html',
   styleUrls: ['./character-detail.page.scss']
 })
-export class CharacterDetailPage implements OnInit {
+export class CharacterDetailPage implements OnInit,OnDestroy {
 
   public char:ICharacter;
-  constructor(private imageManager:ImageService,private characterManager:CharacterService, private route:ActivatedRoute) {
+  constructor(private settings:SettingsService,private imageManager:ImageService,private characterManager:CharacterService, private route:ActivatedRoute) {
     this.char=characterManager.getDefaultCharacter();
   }
   
 
   public async ngOnInit(): Promise<void> {  
-    this.char=(await this.characterManager.getCharacter(this.route.snapshot.paramMap.get("name")));
-    this.char.images=await this.characterManager.getImagesForCharacter(this.route.snapshot.paramMap.get("name"));
+    let char = (await this.characterManager.getCharacter(this.route.snapshot.paramMap.get("name")));
+    let date=new Date(char.birthday).toLocaleDateString('en-US',{month:'long',day:'numeric'});
+    char.birthday=date;
+    char.images=await this.characterManager.getImagesForCharacter(this.route.snapshot.paramMap.get("name"));
+    document.body.classList.add(char.vision_key+"_bg");
+    
+    this.char=char;
     this.getStars();
-    this.showImage("card");
+    setTimeout(() => this.showImage("card"), 250);
+  }
+  public ngOnDestroy(): void {
+    document.body.classList.remove(this.char.vision_key+"_bg");
   }
 
   public getStars(){
     let rarity=this.char.rarity;
     let html=document.getElementById("rarity");
     for(let i=0; i<rarity;i++){
-      html.innerHTML+="<span class='material-icons'>star</span>";
+      html.innerHTML+="<span class='material-icons' style='font-size: 100%;'>star</span>";
     }
   }
   public getElementImage():string{
@@ -40,9 +49,19 @@ export class CharacterDetailPage implements OnInit {
 
   public showImage(image:string){
     document.getElementById("card").style.display="none";
+    document.getElementById("button_card").style.backgroundColor="rgba(0, 0, 0, 0.44)";
     document.getElementById("portrait").style.display="none";
+    document.getElementById("button_portrait").style.backgroundColor="rgba(0, 0, 0, 0.44)";
     document.getElementById("splash").style.display="none";
+    document.getElementById("button_splash").style.backgroundColor="rgba(0, 0, 0, 0.44)";
 
     document.getElementById(image).style.display="block";
+    document.getElementById("button_"+image).style.backgroundColor="rgba(0, 0, 0, 0.63)";
   }
+
+  public onModalOpen(image:string): void {
+    this.settings.openModal({ 
+        image:image
+    });
+}
 }

@@ -1,9 +1,13 @@
-<div class="ModalComponent" (animationend)="animationDone($event)" [ngStyle]="{ '--level': level, '--next-level': level + 1 }">
-    <div class="modal">
-        <button (click)="onClose($event)">x</button>
+<div class="ModalComponent" (animationend)="animationDone($event)" (click)="onClose($event)" [ngStyle]="{ '--level': level, '--next-level': level + 1 }">
+    <div class="modal" (click)="preventClick($event)">
+        <button id="close" (click)="onClose($event)">x</button>
         <h1 class="title">{{ conf.title }}</h1>
         
         <p class="text" *ngFor="let text of conf.content">{{ text }}</p>
+
+        <div class="image" *ngIf="conf.image">
+            <img [src]="conf.image">
+        </div>
 
         <div class="footer">
             <primary-button
