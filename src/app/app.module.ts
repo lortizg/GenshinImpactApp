@@ -6,7 +6,6 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { ComponentsModule } from './modules/components.module';
 import { TitleCasePipe } from './pipes/title-case.pipe';
-
 @NgModule({
     declarations: [
         AppComponent,

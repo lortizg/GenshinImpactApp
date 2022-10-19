@@ -2,6 +2,7 @@ import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Subscription } from 'rxjs';
 
 import { SettingsService } from './services/settings.service';
+import { ViewportScroller } from '@angular/common';
 
 @Component({
     selector: 'app-root',
@@ -14,7 +15,7 @@ export class AppComponent implements OnInit, OnDestroy {
     /** True para renderizar spinner de carga */
     public loading: boolean = false;
 
-    constructor(private settings: SettingsService) {}
+    constructor(private settings: SettingsService, private viewportScroller:ViewportScroller) {}
 
     public ngOnInit(): void {
         // Nos suscribimos al observable loading del settings service para mostrar el spinner de carga
@@ -26,5 +27,8 @@ export class AppComponent implements OnInit, OnDestroy {
         if(this.loadingSubscription) {
             this.loadingSubscription.unsubscribe();
         }
+    }
+    public getScrollPosition(){
+        return this.viewportScroller.getScrollPosition();
     }
 }

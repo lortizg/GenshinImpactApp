@@ -7,6 +7,7 @@ import { ModalComponent } from '../components/modal/modal.component';
 import { PrimaryButtonComponent } from '../components/primary-button/primary-button.component';
 import { PrimaryInputComponent } from '../components/primary-input/primary-input.component';
 import { TopBarComponent } from '../components/top-bar/top-bar.component';
+import { FilterPipe } from '../pipes/filter.pipe';
 
 
 const modules = [
@@ -14,7 +15,8 @@ const modules = [
     ModalComponent,
     PrimaryButtonComponent,
     PrimaryInputComponent,
-    TopBarComponent
+    TopBarComponent,
+    FilterPipe
 ];
 
 @NgModule({
