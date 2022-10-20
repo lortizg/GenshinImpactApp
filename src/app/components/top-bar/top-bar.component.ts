@@ -16,12 +16,12 @@ export class TopBarComponent implements OnInit {
   }
   @HostListener('window:scroll', ['$event'])
   public onScroll(event) {
-    if(window.pageYOffset>100){
-      document.getElementById("stickyBar").style.transform="translateY(100%)";
+    if(window.pageYOffset<100){
+      document.getElementById("stickyBar").style.transform="translateY(-100%)";
       this.hideUl();
     } else{
-      document.getElementById("stickyBar").style.transform="translateY(-100%)";
-      this.showList();
+      document.getElementById("stickyBar").style.transform="translateY(100%)";
+      //this.showList();
     }
   }
   public async ngOnInit(): Promise<void> {
@@ -31,11 +31,13 @@ export class TopBarComponent implements OnInit {
         "name":x,
         "displayName":this.characterManager.getDisplayName(x)
       }})
+      this.hideUl();
    //console.log(this.characterList);
   }
 
   public hideUl(){
-    document.getElementsByTagName("ul")[0].style.display="none";
+    setTimeout(() => document.getElementsByTagName("ul")[0].style.display="none", 100);
+    
   }
   public showList(event?:Event) {
     let list = document.getElementById("list");

@@ -1,4 +1,4 @@
-import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Component, HostListener, OnDestroy, OnInit } from '@angular/core';
 import { ICharacter } from 'src/app/interfaces/ICharacter';
 import { CharacterService } from 'src/app/services/character.service';
 import { ActivatedRoute, Router } from '@angular/router';
@@ -17,12 +17,13 @@ export class CharacterDetailPage implements OnInit,OnDestroy {
     this.char=characterManager.getDefaultCharacter();
   }
   
-
+  @HostListener('window:beforeunload')
   public async ngOnInit(): Promise<void> { 
     let char; 
     try{
       char=(await this.characterManager.getCharacter(this.route.snapshot.paramMap.get("name")));
      } catch{
+      window.onbeforeunload=(()=>{console.log("hola");})
       this.router.navigateByUrl('/error');
       return;
     }

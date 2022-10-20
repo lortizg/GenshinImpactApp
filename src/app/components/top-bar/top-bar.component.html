@@ -2,11 +2,11 @@
 
 </div>
 
-<div id="stickyBar" (click)="hideUl()">
+<div id="stickyBar">
     <!-- <input type="text" placeholder="Search..."> -->
     <p></p>
     <div id="search" class="dropdown-content">
-        <input type="text" placeholder="Search.." id="myInput" [(ngModel)]="filteredString" (keyup)="showList($event)">
+        <input type="text" placeholder="Search.." id="myInput" [(ngModel)]="filteredString" (focus)="showList($event)" (blur)="hideUl()">
         <ul id="list">
             <li  *ngFor="let char of characterList | filter:filteredString">
                 <a href="/characters/{{char.name}}">{{char.displayName}}</a>
