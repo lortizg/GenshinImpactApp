@@ -18,7 +18,8 @@ export class TopBarComponent implements OnInit {
   public onScroll(event) {
     if(window.pageYOffset<100){
       document.getElementById("stickyBar").style.transform="translateY(-100%)";
-      this.hideUl();
+      this.hideUl(0);
+      this.hideUl(1);
     } else{
       document.getElementById("stickyBar").style.transform="translateY(100%)";
       //this.showList();
@@ -31,18 +32,29 @@ export class TopBarComponent implements OnInit {
         "name":x,
         "displayName":this.characterManager.getDisplayName(x)
       }})
-      this.hideUl();
+      this.hideUl(0);
+      this.hideUl(1);
    //console.log(this.characterList);
   }
 
-  public hideUl(){
-    setTimeout(() => document.getElementsByTagName("ul")[0].style.display="none", 100);
+  public hideUl(index:number){
+    if(index===0){
+      let father=document.getElementById("fixedSearch");
+      (father.children[0] as HTMLElement).style.display="block";
+      (father.children[2] as HTMLElement).style.display="none";
+    }
+    setTimeout(() => document.getElementsByTagName("ul")[index].style.display="none", 100);
     
   }
-  public showList(event?:Event) {
-    let list = document.getElementById("list");
-    list.style.display="block";
+  public showList(index:number,event?:Event) {
+    let list = document.getElementsByClassName("list");
+    (list[index] as HTMLElement).style.display="block";
     if(event) this.onChange.emit(event as Event);
+  }
+  public showInput(){
+    let father=document.getElementById("fixedSearch");
+    (father.children[0] as HTMLElement).style.display="none";
+    (father.children[2] as HTMLElement).style.display="block";
   }
 
 }

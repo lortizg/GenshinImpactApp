@@ -9,6 +9,7 @@
     overflow: hidden;
 
     display:flex;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
     img{
@@ -24,4 +25,10 @@
         font-family: 'Russo One';
         font-size: 60px;
     }
+}
+a{
+    color: white;
+    font-size: 30px;
+    z-index: 50;
+    mix-blend-mode: difference;
 }
