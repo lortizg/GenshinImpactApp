@@ -1,11 +1,15 @@
-<div id=container (click)="hideUl()">
+<div id="Barra siempre fija que se esconde">
+
+</div>
+
+<div id="stickyBar" (click)="hideUl()">
     <!-- <input type="text" placeholder="Search..."> -->
     <p></p>
     <div id="search" class="dropdown-content">
-        <input type="text" placeholder="Search.." id="myInput" [(ngModel)]="filteredString" (keyup)="showList()">
+        <input type="text" placeholder="Search.." id="myInput" [(ngModel)]="filteredString" (keyup)="showList($event)">
         <ul id="list">
             <li  *ngFor="let char of characterList | filter:filteredString">
-                <a href="/characters/{{char}}">{{char}}</a>
+                <a href="/characters/{{char.name}}">{{char.displayName}}</a>
             </li>
         </ul>
     </div>

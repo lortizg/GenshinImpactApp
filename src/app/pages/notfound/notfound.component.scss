@@ -1,0 +1,27 @@
+#container{
+    background-color: black;
+    background-image: url(https://w0.peakpx.com/wallpaper/307/302/HD-wallpaper-xiao-mask-genshin-impact-vigilant-yaksha.jpg);
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: contain;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+
+    display:flex;
+    justify-content: center;
+    align-items: center;
+    img{
+        height: 100%;
+        width: 100%;
+        object-fit: contain;
+    }
+    p{
+        //margin-top: 20%;
+        color:white;
+        z-index: 1;
+        mix-blend-mode: difference;
+        font-family: 'Russo One';
+        font-size: 60px;
+    }
+}

@@ -81,7 +81,7 @@
             <div id="nation"  class="basicColumn">
                 <h3>Nation</h3>
                 <span>
-                    <img *ngIf="char.nation" [src]="getNationImage()">
+                    <img *ngIf="char.nation" [src]="getNationImage()" (error)="handleMissingImage($event)">
                     <p>{{char.nation}}</p>
                 </span>
             </div>
@@ -112,9 +112,9 @@
     
 
     <div id="crystalfly2">
-        <img *ngIf="char.nation" src="assets/images/side_crystalfly_{{char.nation}}.png">
+        <img *ngIf="char.nation" (error)="$event.target['src']=''" src="assets/images/side_crystalfly_{{char.nation}}.png">
     </div>
     <div id="statue">
-        <img *ngIf="char.nation" src="assets/images/statue_{{char.nation}}.webp">
+        <img *ngIf="char.nation" (error)="$event.target['src']=''" src="assets/images/statue_{{char.nation}}.webp">
     </div>
 </div>

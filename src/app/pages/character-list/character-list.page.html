@@ -1,7 +1,17 @@
+<app-top-bar (onChange)="onInput($event)"></app-top-bar>
+<div id="listStyle">
+    <div id="listIcon" (click)="toList()" (mouseenter)="overIcon($event,'list')" (mouseleave)="outIcon($event,'list')">
+        <mat-icon>view_headline</mat-icon>
+    </div>
+    <div id="grid" (click)="toGrid()" (mouseenter)="overIcon($event,'grid')" (mouseleave)="outIcon($event,'grid')">
+        <grid-icon ></grid-icon>
+        <grid-full-icon></grid-full-icon>
+    </div>
+</div>
 <div id="ListContainer">
-    <li *ngFor="let char of characters" >
+    <li *ngFor="let char of characters |filter:filteredString" >
         <a [routerLink]="'/characters/'+char.name">
-            <div id="listSection" [style]="'background-image: linear-gradient(to right, rgba(255, 255, 255, 0.8), rgba(255, 255, 255, 0)),url('+char.card+')'">
+            <div class="listSection" [style]="'background-image: linear-gradient(to right, rgba(255, 255, 255, 0.8), rgba(255, 255, 255, 0)),url('+char.card+')'">
                 <img [src]="char.icon" (error)="$event.target['src'] = defaultIcon">
                 <p>{{char.displayName | titlecase}}</p>
             </div>

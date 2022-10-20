@@ -1,4 +1,4 @@
-#container{
+#stickyBar{
   position: fixed;
   top: -10vh;
   display: flex;
@@ -11,6 +11,11 @@
 
   #search{
     border-radius: 30px;
+    ul{
+      max-height: 500px;
+    /* margin-top: 50px; */
+    overflow: auto;
+    }
   }
 }
   

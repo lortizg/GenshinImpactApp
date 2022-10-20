@@ -1,7 +1,7 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { ICharacter } from 'src/app/interfaces/ICharacter';
 import { CharacterService } from 'src/app/services/character.service';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { ImageService } from 'src/app/services/image.service';
 import { SettingsService } from 'src/app/services/settings.service';
 
@@ -13,13 +13,19 @@ import { SettingsService } from 'src/app/services/settings.service';
 export class CharacterDetailPage implements OnInit,OnDestroy {
 
   public char:ICharacter;
-  constructor(private settings:SettingsService,private imageManager:ImageService,private characterManager:CharacterService, private route:ActivatedRoute) {
+  constructor(private router:Router, private settings:SettingsService,private imageManager:ImageService,private characterManager:CharacterService, private route:ActivatedRoute) {
     this.char=characterManager.getDefaultCharacter();
   }
   
 
-  public async ngOnInit(): Promise<void> {  
-    let char = (await this.characterManager.getCharacter(this.route.snapshot.paramMap.get("name")));
+  public async ngOnInit(): Promise<void> { 
+    let char; 
+    try{
+      char=(await this.characterManager.getCharacter(this.route.snapshot.paramMap.get("name")));
+     } catch{
+      this.router.navigateByUrl('/error');
+      return;
+    }
     let date=new Date(char.birthday).toLocaleDateString('en-US',{month:'long',day:'numeric'});
     char.birthday=date;
     char.images=await this.characterManager.getImagesForCharacter(this.route.snapshot.paramMap.get("name"));
@@ -63,5 +69,8 @@ export class CharacterDetailPage implements OnInit,OnDestroy {
     this.settings.openModal({ 
         image:image
     });
-}
+  }
+  public handleMissingImage(event:Event){
+    (event.target as HTMLImageElement).src = 'https://upload.wikimedia.org/wikipedia/commons/thumb/f/f9/Wolf%E2%80%93Lundmark%E2%80%93Melotte_%28transparent_background%29.png/2048px-Wolf%E2%80%93Lundmark%E2%80%93Melotte_%28transparent_background%29.png';
+  }
 }

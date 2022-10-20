@@ -8,6 +8,9 @@ import { PrimaryButtonComponent } from '../components/primary-button/primary-but
 import { PrimaryInputComponent } from '../components/primary-input/primary-input.component';
 import { TopBarComponent } from '../components/top-bar/top-bar.component';
 import { FilterPipe } from '../pipes/filter.pipe';
+import { GridIcon } from '../components/icons/grid-icon.component';
+import { GridFullIcon } from '../components/icons/grid-full-icon.component';
+import { ListIcon } from '../components/icons/list-icon.component';
 
 
 const modules = [
@@ -16,7 +19,10 @@ const modules = [
     PrimaryButtonComponent,
     PrimaryInputComponent,
     TopBarComponent,
-    FilterPipe
+    FilterPipe,
+    GridIcon,
+    GridFullIcon,
+    ListIcon
 ];
 
 @NgModule({

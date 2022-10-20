@@ -83,7 +83,7 @@
 
 html, 
 body { 
-    height: 100%; 
+   // height: 100%; 
 }
 
 body {
@@ -95,6 +95,12 @@ img{
 }
 li,ol,ul{
     list-style: none;
+}
+
+@font-face {
+    font-family: 'Russo One'; /*a name to be used later*/
+    src: url('/assets/RussoOne-Regular.ttf'); /*URL to font*/
+    // src:url('https://fonts.google.com/specimen/Russo+One');
 }
 
 .ANEMO{

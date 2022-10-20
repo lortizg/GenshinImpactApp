@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { PreloadAllModules, RouterModule, Routes } from '@angular/router';
 
 import { AuthGuard } from './guards/auth.guard';
+import { NotfoundComponent } from './pages/notfound/notfound.component';
 
 const routes: Routes = [
     {
@@ -19,6 +20,7 @@ const routes: Routes = [
         loadChildren: () => import('./pages/register/register.page.module').then(m => m.RegisterModule),
       //  canActivate: [AuthGuard]
     },
+    { path: '**', component: NotfoundComponent }
 ];
 
 @NgModule({
