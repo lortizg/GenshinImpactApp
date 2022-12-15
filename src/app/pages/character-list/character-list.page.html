@@ -9,7 +9,7 @@
     </div>
 </div>
 <div id="ListContainer">
-    <li *ngFor="let char of characters |filter:filteredString" >
+    <li *ngFor="let char of characters | filter:filteredString" >
         <a [routerLink]="'/characters/'+char.name">
             <div class="listSection" [style]="'background-image: linear-gradient(to right, rgba(255, 255, 255, 0.8), rgba(255, 255, 255, 0)),url('+char.card+')'">
                 <img [src]="char.icon" (error)="$event.target['src'] = defaultIcon">

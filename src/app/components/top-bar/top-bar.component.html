@@ -11,7 +11,7 @@
         </label>
 
         <div id="fixedDropdown" class="dropdown-content" >
-            <input type="text" id="fixedInput" placeholder="Search for your character!" class="myInput" [(ngModel)]="filteredString" (focus)="showList(0,$event)" (blur)="hideUl(0)">
+            <input type="text" id="fixedInput" placeholder="Search for your character!" class="myInput" [(ngModel)]="filteredString" (keyup)="emitInput($event)" (focus)="showList(0,$event)" (blur)="hideUl(0)">
 
             <ul class="list">
                 <li  *ngFor="let char of characterList | filter:filteredString">
@@ -24,9 +24,13 @@
 
 <div id="stickyBar">
     <!-- <input type="text" placeholder="Search..."> -->
-    <p></p>
+    <!-- <div id="logo"> -->
+        <a id="logo" href="/characters">
+            <img src="https://upload.wikimedia.org/wikipedia/en/thumb/5/5d/Genshin_Impact_logo.svg/2560px-Genshin_Impact_logo.svg.png">
+        </a>
+    <!-- </div> -->
     <div id="search" class="dropdown-content">
-        <input type="text" placeholder="Search.." class="myInput" [(ngModel)]="filteredString" (focus)="showList(1,$event)" (blur)="hideUl(1)">
+        <input type="text" placeholder="Search.." class="myInput" [(ngModel)]="filteredString" (keyup)="emitInput($event)" (focus)="showList(1,$event)" (blur)="hideUl(1)">
         <ul class="list">
             <li  *ngFor="let char of characterList | filter:filteredString">
                 <a href="/characters/{{char.name}}">{{char.displayName}}</a>

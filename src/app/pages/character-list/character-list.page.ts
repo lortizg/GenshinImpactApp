@@ -96,6 +96,7 @@ export class CharacterListPage implements OnInit {
 
   public onInput(event:Event){
     this.filteredString=(event.target as HTMLInputElement).value;
+    //console.log(this.filteredString);
   }
 
 }

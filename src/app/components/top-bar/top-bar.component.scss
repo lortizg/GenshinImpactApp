@@ -1,7 +1,7 @@
 #fixedBar{
   display: flex;
   justify-content: space-between;
- // align-items: center;
+ //align-items: center;
 //  background-color: #525252;
   height: 8.5vh;
   width: 100%;
@@ -12,6 +12,9 @@
   }
   #fixedSearch{
     z-index: 50;
+    display: flex;
+    justify-content: center;
+    align-items: center;
     .dropdown-content{
       display: none;
     }
@@ -20,44 +23,57 @@
 }
 
 #search, #fixedDropdown{
-  border-radius: 30px;
+  position:relative;
   ul{
+    background-color: white;
+    border-radius: 0 30px;
     max-height: 500px;
   /* margin-top: 50px; */
     overflow: auto;
+    position: absolute;
+    width: 100%;
   }
 }
 
 #stickyBar{
   position: fixed;
-  top: -10vh;
+  top: 0;
   display: flex;
-  justify-content: flex-end;
-  align-items: flex-start;
   background-color: #525252;
+  transition: top 0.5s;
+  justify-content: space-between;
+  align-items: center;
   height: 8.5vh;
   width: 100%;
-  transition: transform .5s;
 
-
+  #logo{
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    filter:invert(1);
+    img{
+      width: 100%;
+      height: 80%;
+      object-fit: contain;
+    }
+  }
 }
   
-// #list{
-//   display:none;
-// }
   .myInput {
     font-size: 16px;
     padding: 5px 10px;
     border: none;
+    border-radius: 12px;
   }
   
-  .myInput:focus {outline: 3px solid #ddd;}
+  //.myInput:focus {outline: 3px solid #ddd;}
   
   .dropdown-content {
     //position: absolute;
-    background-color: #f6f6f6;
-    overflow: auto;
-    margin-top:1.3%;
+    //background-color: #f6f6f6;
+    //overflow: auto;
+    //margin-top:1.3%;
     z-index: 1;
   }
   

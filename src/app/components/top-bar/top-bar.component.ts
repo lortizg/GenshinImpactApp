@@ -17,11 +17,11 @@ export class TopBarComponent implements OnInit {
   @HostListener('window:scroll', ['$event'])
   public onScroll(event) {
     if(window.pageYOffset<100){
-      document.getElementById("stickyBar").style.transform="translateY(-100%)";
+      document.getElementById("stickyBar").style.top="-10%";
       this.hideUl(0);
       this.hideUl(1);
     } else{
-      document.getElementById("stickyBar").style.transform="translateY(100%)";
+     document.getElementById("stickyBar").style.top="0";
       //this.showList();
     }
   }
@@ -49,7 +49,12 @@ export class TopBarComponent implements OnInit {
   public showList(index:number,event?:Event) {
     let list = document.getElementsByClassName("list");
     (list[index] as HTMLElement).style.display="block";
-    if(event) this.onChange.emit(event as Event);
+   // if(event) this.onChange.emit(event as Event);
+  }
+  public emitInput(event:Event){
+    if(event) {
+      this.onChange.emit(event as Event);
+    }
   }
   public showInput(){
     let father=document.getElementById("fixedSearch");
